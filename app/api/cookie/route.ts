@@ -7,11 +7,11 @@ const VALUES = ['control', 'variantA', 'variantB'] as const;
 export const GET = async (): Promise<NextResponse> => {
   const cookieStore = cookies();
   console.log(cookieStore.getAll());
-  const setCookie = cookieStore.get(COOKIE_NAME);
+  const cookie = cookieStore.get(COOKIE_NAME);
 
-  if (setCookie) {
-    console.log(`Value found in cookie: ${setCookie.value}`);
-    return NextResponse.json({ setCookie });
+  if (cookie) {
+    console.log(`Value found in cookie: ${cookie.value}`);
+    return NextResponse.json({ [COOKIE_NAME]: cookie.value });
   }
 
   console.log('Value not found in cookie.');
